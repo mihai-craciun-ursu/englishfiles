@@ -1,0 +1,90 @@
+doctype html
+// Website Template by freewebsitetemplates.com
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Blog Single Post - Site Diriga
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+    link(rel='stylesheet', type='text/css', href='css/mobile.css', media='screen and (max-width : 568px)')
+    link(rel='stylesheet', href='https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js')
+    script(type='text/javascript', src='js/mobile.js')
+  body
+    #header
+      a.logo(href='index.html')
+        img(src='images/logo.png', alt='')
+      ul#navigation
+        li
+          a(href='index.html') home
+        li
+          a(href='about.html') about
+        li
+          a(href='documents.html') documents
+        li.selected
+          a(href='blog.html') blog
+        li
+          a(href='contact.html') contact
+    #body
+      h1
+        span blog single post
+      div
+        // SLIDE SHOW
+        .bxslider
+          img(src='/images/Picture1.png')
+          img(src='/images/Picture2.png')
+          img(src='/images/Picture3.png')
+          img(src='/images/Picture4.png')
+        style.
+          .bx-wrapper{
+          margin: 20px auto 40px auto;
+          }
+          .bxslider > img {
+          margin: 0 auto !important;
+          max-height: 400px;
+          width: auto;
+          }
+          .bx-wrapper > img {
+          margin: 0 auto !important;
+          }
+        script.
+          $(function(){
+          $('.bxslider').bxSlider({
+          mode: 'fade',
+          slideWidth: 600,
+          adaptiveHeight: false
+          });
+          });
+        // /SLIDE SHOW
+        .article
+          h2 “Moisilisti” in London
+          p
+            | It was Dr. Samuel Johnson who said that “When a man is tired of London he is tired of life, for there is in London all that life can afford.” Apparently, that might seem like an exaggeration for someone who is used to travelling to faraway places and seeing all kind of things throughout the world. How can one imagine finding everything there is to be in just one place? Is London really the place where the past meets the present? Where large parks allow its inhabitants to escape the hustle and bustle of an overcrowded city?
+          p
+            | From the heart of London, University College of London, a prestigious educational institution with the help of the Embassy Summer, a department which welcomes students throughout the world in London to study English and the English way of life, hosted a two-week English summer camp. Among the Romanian students there were as well “Grigore Moisil” Highschool students who enjoyed the well-deserved holiday at the end of August.  If in the previous year we only got a small taste of London for a few hours at the end of a sunny afternoon, this time round, it was a feast!
+          p
+            | Moisil students are already familiarized with English summer camps where they get the chance to study together with native English speaking teachers and they spend the rest of the day admiring the sights. Embassy Summer staff took great care of us and from day one they took us on a walk to Westminster. Each day meant discovering new museums or galleries that would make you realize what great things this culture has to show.
+            | Trafalgar Square was powerfully dominated by the enormous column and statue of Admiral Nelson. From here there are only a few steps to climb to the National documents.
+          p
+            | Full size wall paintings or minuscule ones, women portraits or mothers cuddling their infants, seaside views or wrecking ships, they all told different stories  which were waiting to be discovered beyond lines, colors, paint strokes. Names like Vincent van Gogh, Monet, Renoir, Degas, and Caravaggio which otherwise you could only admire in the media or in books were there on display, just a step away. What would you say if in front of you there was a painting which still kept the fine grains of sand blown away by the wind onto the painter’s canvas 200 years ago? Would you still feel that the past cannot meet the present?
+          p
+            | Across the Natural History Museum, “Victoria and Albert” Museum invites visitors to admire Rodin’s sculptures and collections of exhibits from all the corners of the world. After having wondered throughout the long corridors and large exhibits halls of this intricate maze, I came across an impressive collection of precious stones and jewellery that one is not likely to easily forget.  It is a pity that curators want to keep everyone happy and savor the experience by coming to London and see them in person. Consequently, no pictures allowed! J
+          p
+            | Every day, we looked forward to getting off the Tube at one of the stations next to the Thames. During the day there was St. Paul’s Cathedral with its 528 narrow and steep steps to the top. During the night it was the London Eye! Whoever thought that seeing a dungeon would be fun? Well, it was indeed! Can the Tower of London be still considered a dungeon? Hardly! Rather a marvelous display building for the Crown Jewels still safely guarded by the Beefeaters  and the crows now befriending every visitors willing to share a bite to eat with them.
+          p
+            | Every weekend meant having fun. We spent our first one at Cambridge where we visited King’s College and went shopping for our loved ones back at home. Some of us gladly suggest the sweets shop. The following day was nothing but Thorpe Park, an amusement park where everyone tested their limits, got wet, laughed, shivered due to their soaking clothes and shoes.
+          p
+            | The second week was full of surprises also. Our hosts took us to the British Museum, the Science Museum and on a river cruise on Thames. It was such o thrilling experience to understand that only o few days before you had been on top of St. Paul’s and now just a tiny speck of dust on the river. As departure day was slowly approaching, the children were more and more anxious to do some serious shopping. Everyone was waiting at home for presents. So the time spent shopping was always too short.
+          p
+            | Besides shopping skills which seem to require no studies, Mirunette students practiced also their bowling abilities and taking selfies with famous stars from Madame Tussaud’s documents. At the end of this experience, all Mirunette students got well praising certificates explaining the progress registered by them during their two-week course here in London.  Leaving London seemed more difficult than arriving because it is always difficult to leave friends behind. Italy, Russia, Tunisia, France, Egypt, China, Thailand are only a few of the destinations we promised to visit next time we plan our holiday.
+          p
+            | No matter how complicated the Tube might have been how much we had to walk or how much money we spent on trinkets we were not tired of London which had been so kind to us. Even the weather betrayed itself. There was no rain, and it was sunny for the whole time. Maybe we were all not too pleased with the British food but we surely enjoyed the cakes: lemon cake, red velvet cake, chocolate cake, carrot cake. Hopefully, this is not the last time we are offered the opportunity to see these sights and landmarks known worldwide. Laughter, smiles, happiness, friends, music, films, travelling are the words that perfectly define this amazing experience. “Grigore Moisil” High School is part of this. We learn , we travel, we have fun, we make memories.
+    #footer
+      div
+        p © 2018 by Mr. Beard Bear Team. All rights reserved.
+        ul
+          li
+            a#facebook(href='https://www.facebook.com/visterneanu.mihaela') facebook
+          li
+            a#ltgm(href='http://www.liceulmoisil.ro/') LTGM

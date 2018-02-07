@@ -1,0 +1,38 @@
+extends layout
+
+block content
+    #body
+      h1
+        span #{blogPost.name}
+      div
+        // SLIDE SHOW
+        .bxslider
+          each val in blogPost.images_path
+            img(src = `${val}`)
+        style.
+          .bx-wrapper{
+          margin: 20px auto 40px auto;
+          }
+          .bxslider > img {
+          margin: 0 auto !important;
+          max-height: 400px;
+          width: auto;
+          }
+          .bx-wrapper > img {
+          margin: 0 auto !important;
+          }
+        script.
+          $(function(){
+          $('.bxslider').bxSlider({
+          mode: 'fade',
+          slideWidth: 600,
+          adaptiveHeight: false
+          });
+          });
+        // /SLIDE SHOW
+        .article
+          p(style="white-space: pre-line;white-space: pre-wrap") #{blogPost.description}
+        if currentUser
+          a(href=`/blog/${blogPost._id}/delete`)
+            h4(style="background-color:red")
+              span(style="background-color:red") Delete

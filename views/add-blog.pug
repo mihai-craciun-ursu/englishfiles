@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    #body
+        h1(style="color:#3079AB") Add new
+        form(method='POST' action='/add-blog' enctype="multipart/form-data")
+            label(for='file' style="font-size:20px") Images (at least one required):
+            input(type="file" id="myFile" name="file" multiple)
+            input#fname(type='text', name='name', placeholder='Title')
+            textarea#message(name='description', placeholder= 'Article')
+            input#send(type='submit', name='send', value='Upload', style="margin-bottom:200px")

@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    #body
+        h1(style="color:#3079AB") Login
+        form(method='POST' action='/login')
+            input#fname(type='text', name='name', placeholder='Username')
+            input#address(type='password', name='password', placeholder='Password')
+            input#send(type='submit', name='send', value='Login', style="margin-bottom:200px")

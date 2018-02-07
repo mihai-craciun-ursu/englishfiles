@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    #body
+      if !currentUser
+        h1
+          span blog
+      else
+        a(href="/add-blog")
+          h1
+            span blog
+      div
+        ul
+          each val in blogPosts
+            li
+              a.figure(href=`/blog/${val._id}`)
+                img#poza_blog(src=`${val.images_path[0]}`)
+              div
+                h3 #{val.name}
+                p #{val.description}
+                a.more(href=`/blog/${val._id}`) read more
+                  

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    #body
+        h1(style="color:#3079AB") Add new
+        form(method='POST' action='/add' enctype="multipart/form-data")
+            input(type="file" id="myFile" name="file")
+            input#fname(type='text', name='name', placeholder='Name')
+            label(for='file' style="font-size:20px") File Type:
+            select#fname(name='file_type')
+                option(value="document") Document
+                option(value="audio") Audio
+                option(value="video") Video
+                option(value="archive") Archive
+                option(value="image") Image
+            label(for='grade' style="font-size:20px") Grade:
+            select#fname(name='grade')
+                option(value="0") All
+                option(value="1") 5-8th grade
+                option(value="2") 9-12th grade
+                option(value="5") 5th grade
+                option(value="6") 6th grade
+                option(value="7") 7th grade
+                option(value="8") 8th grade
+                option(value="9") 9th grade
+                option(value="10") 10th grade
+                option(value="11") 11th grade
+                option(value="12") 12th grade
+            textarea#message(name='description', placeholder= 'Description')
+            input#send(type='submit', name='send', value='Upload', style="margin-bottom:200px")

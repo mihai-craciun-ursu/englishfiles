@@ -1,0 +1,47 @@
+doctype html
+// Website Template by freewebsitetemplates.com
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title documents Single Post - Site Diriga
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+    link(rel='stylesheet', type='text/css', href='css/mobile.css', media='screen and (max-width : 568px)')
+    link(href='http://vjs.zencdn.net/6.6.0/video-js.css', rel='stylesheet')
+    script(type='text/javascript', src='js/mobile.js')
+    script(src='http://vjs.zencdn.net/6.6.0/video.js')
+  body
+    #header
+      a.logo(href='index.html')
+        img(src='images/logo.png', alt='')
+      ul#navigation
+        li
+          a(href='index.html') home
+        li
+          a(href='about.html') about
+        li.selected
+          a(href='documents.html') documents
+        li
+          a(href='blog.html') blog
+        li
+          a(href='contact.html') contact
+    #body
+      h1
+        span documents single post
+      div
+        #video_player
+          video#my-video.video-js(controls='', preload='auto', width='600', poster='MY_VIDEO_POSTER.jpg', data-setup='{}')
+            source(src='images/test.mp4', type='video/mp4')
+            source(src='images/test3.MOV', type='video/mov')
+        .article
+          h4 Description
+          p#description
+            | Suspendisse at tortor sit amet justo accumsan tincidunt. Sed id fermentum urna. Phasellus condimentum, diam a congue dictum, tortor tellus auctor dui, a consequat elit justo vitae dui. Nulla facilisi. Vestibulum bibendum semper diam ut auctor. Nunc vitae sem egestas, dictum nisi quis, volutpat arcu. Morbi ex leo, fringilla ut est sollicitudin, pharetra accumsan felis. Nullam finibus ex et tristique accumsan. Quisque gravida dui non sapien dignissim mattis. Fusce ultrices nulla sit amet sapien vestibulum rhoncus. Mauris malesuada neque quam, vitae auctor felis ornare sed. Etiam finibus venenatis justo id bibendum.
+    #footer
+      div
+        p © 2018 by Mr. Beard Bear Team. All rights reserved.
+        ul
+          li
+            a#facebook(href='https://www.facebook.com/visterneanu.mihaela') facebook
+          li
+            a#ltgm(href='http://www.liceulmoisil.ro/') LTGM

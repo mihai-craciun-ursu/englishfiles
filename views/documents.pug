@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    #body
+      if currentUser
+        a(href = "/add")
+          h1
+            span documents
+      else
+        h1
+          span documents
+      ul#documents
+        each val in documents
+          li
+            a(href=`/documents/${val._id}`)
+              img(src=`/images/${val.file_type}.jpg`, alt = '')
+              span #{val.name}

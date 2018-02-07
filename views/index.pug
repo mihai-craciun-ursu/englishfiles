@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    #body
+      #featured
+        img(src='images/wallpaper.jpg', alt='')
+        div
+          h2 About me
+          span lorem ipsum dolor sit amet, consectetur 
+          span Donec efficitur nulla mauris, et tempor mauris vehicula non.
+          span Donec at hendrerit ipsum. Cras sit amet aliquam odio. 
+          a.more(href='/about') read more
+      ul
+        #elements
+          each val in documents
+            li
+              a(href=`/documents/${val._id}`)
+                img(src=`/images/${val.file_type}.jpg`, alt = '')
+                span #{val.name}
+

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    #body
+      h1
+        span #{document.name}
+      div
+        if tester.isVideo
+          #video_player
+            video#my-video.video-js(controls='', preload='auto', width='600', data-setup='{}')
+              source(src=`/${document.file_path}`, type='video/mp4')
+        if tester.isDocument
+            img(src=`/${document.file_icon}`, alt="", style = "border: none;")
+            .article
+              a(href = `/${document.file_path}`)
+                h4 Download
+        if tester.isImage
+          a(href = `/${document.file_path}`)
+            img(src=`/${document.file_path}`, alt="", style = "max-width:600px")
+        if tester.isArchive
+          img(src=`/${document.file_icon}`, alt="", style = "border: none;")
+          .article
+            a(href = `/${document.file_path}`)
+              h4 Download
+        if tester.isAudio
+          #video_player
+            audio#my-video.video-js(controls='', preload='auto', width='600', data-setup='{}')
+              source(src=`/${document.file_path}`, type='audio/mp3')
+        .article
+          p#description
+            | #{document.description}
+        if currentUser
+          a(href=`/documents/${document._id}/delete`)
+            h4(style="background-color:red")
+              span(style="background-color:red") Delete

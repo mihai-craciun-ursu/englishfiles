@@ -1,0 +1,43 @@
+doctype html
+// Website Template by freewebsitetemplates.com
+html
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Contact - Site Diriga
+    link(rel='stylesheet', type='text/css', href='css/style.css')
+    link(rel='stylesheet', type='text/css', href='css/mobile.css', media='screen and (max-width : 568px)')
+    script(type='text/javascript', src='js/mobile.js')
+  body
+    #header
+      a.logo(href='index.html')
+        img(src='images/logo.png', alt='')
+      ul#navigation
+        li
+          a(href='index.html') home
+        li
+          a(href='about.html') about
+        li
+          a(href='documents.html') documents
+        li
+          a(href='blog.html') blog
+        li.selected
+          a(href='contact.html') contact
+    #body
+      h1
+        span let's keep in touch
+      form(action='contact.html')
+        input#fname(type='text', name='fname', value='name')
+        input#address(type='text', name='address', value='address')
+        input#email(type='text', name='email', value='email')
+        input#phone(type='text', name='phone', value='phone number')
+        textarea#message(name='message') message
+        input#send(type='submit', name='send', value='send')
+    #footer
+      div
+        p © 2018 by Mr. Beard Bear Team. All rights reserved.
+        ul
+          li
+            a#facebook(href='https://www.facebook.com/visterneanu.mihaela') facebook
+          li
+            a#ltgm(href='http://www.liceulmoisil.ro/') LTGM

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    #body
+      h1
+        span let's keep in touch
+      form(action='contact.html')
+        input#fname(type='text', name='fname', value='name')
+        input#address(type='text', name='address', value='address')
+        input#email(type='text', name='email', value='email')
+        input#phone(type='text', name='phone', value='phone number')
+        textarea#message(name='message') message
+        input#send(type='submit', name='send', value='send')
