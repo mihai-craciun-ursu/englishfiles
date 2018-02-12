@@ -309,7 +309,7 @@ router.get('/blog/:id/delete', function(req, res, next) {
     let sampleFile = req.files.file;
     let randomname;
     if(sampleFile.mimetype == 'application/octet-stream'){
-      randomname = randomstring.generate(29) + ".rar";
+      randomname = randomstring.generate(28) + ".rar";
       console.log(randomname);
     }else randomname = randomstring.generate();
 
