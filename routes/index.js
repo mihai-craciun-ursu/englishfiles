@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var randomstring = require('randomstring');
+var AWS = require('aws-sdk');
 var Document = require('../models/document');
 var BlogPost = require('../models/blogPosts');
 var User = require('../models/user');
 
-//var User = require('../models/user');
+
+//configure file storage
+AWS.config.update({accessKeyId: 'J_CKT_TFWQPFECGCMKBG', secretAccessKey: 'AThHyIJZGGL8CeJt60GXyzje_aIhKXgtysm4AQ=='});
+var ep = new AWS.Endpoint('cellar.services.clever-cloud.com');
+var s3 = new AWS.S3({ endpoint: ep, signatureVersion: 'v2' });
 
 
 router.get('/mihaiyin2', function(req, res, next) {
@@ -147,7 +153,12 @@ return res.render('add-new-doc', { title: 'Home' });
       if(err){
         console.log("EROARE WAI")
       }else{
-        return res.render('blog-single-post', {blogPost: blogPost[0]});
+        setTimeout(function (){
+
+          return res.render('blog-single-post', {blogPost: blogPost[0]});
+        
+        }, 2000);
+        
       }
     });
   
@@ -169,15 +180,26 @@ router.get('/blog/:id/delete', function(req, res, next) {
     }else{
       var blog = blogPost[0];
       var images = blog.images_path;
-
+      let params;
 
       
         images.forEach(function (image){
-          fs.unlink('./public' + image, function (err) {
-            if (err) throw err;
-            // if no error, file has been deleted successfully
-            console.log('File deleted!');
-          }); 
+          params = {
+            Bucket: 'docsss', 
+            Delete: { // required
+              Objects: [ // required
+                {
+                  Key: image.slice(-32) // required
+                }
+              ],
+            },
+          };
+          
+          s3.deleteObjects(params, function(err, data) {
+            if (err) console.log(err, err.stack); // an error occurred
+            else     console.log(data);           // successful response
+          });
+
         });
       
     }
@@ -213,36 +235,48 @@ router.get('/blog/:id/delete', function(req, res, next) {
     let formFields = req.body;
     let sampleFile = req.files.file;
     let files_paths = [];
-
-    fs.readdirSync("public/uploads/blog").forEach(file => {
-      if(sampleFile instanceof Array){
-        sampleFile.forEach(function (fileUpload){
-          if(file == fileUpload.name){
-            fileUpload.name = (Math.floor(Math.random()*50000)+1).toString() + fileUpload.name;
-          }
-        });
-      }else{
-        
-        if(file == sampleFile.name){
-          sampleFile.name = (Math.floor(Math.random()*50000)+1).toString() + sampleFile.name;
-        }
-      }
-    });
+    let params;
+    let randomname;
 
     
     if(sampleFile instanceof Array){
       sampleFile.forEach(function (file){
-        console.log(file);
-        file.mv('public/uploads/blog/'+file.name, function(err) {
-            //TODO: handle error
-        });
-        files_paths.push('/uploads/blog/'+file.name);
+        randomname = randomstring.generate();
+
+        params = {
+            Body: file.data,
+            ContentType:file.mimetype,
+            Bucket: 'docsss',
+            Key: randomname,
+            ACL: 'public-read'
+            };
+          
+            s3.putObject(params, function (err, data) {
+            if (!err) {
+              console.log("Object is public at https://cellar.services.clever-cloud.com/" +
+              params.Bucket + "/" + params.Key);
+            }else console.log(err);
+          });
+          files_paths.push('https://cellar.services.clever-cloud.com/docsss/'+randomname);
       });
     }else{
-      sampleFile.mv('public/uploads/blog/'+sampleFile.name, function(err) {
-        //TODO: handle error
+      randomname = randomstring.generate();
+  
+      params = {
+        Body: sampleFile.data,
+        ContentType:sampleFile.mimetype,
+        Bucket: 'docsss',
+        Key: randomname,
+        ACL: 'public-read'
+        };
+       
+        s3.putObject(params, function (err, data) {
+        if (!err) {
+          console.log("Object is public at https://cellar.services.clever-cloud.com/" +
+          params.Bucket + "/" + params.Key);
+        }else console.log(err);
       });
-      files_paths.push('/uploads/blog/'+sampleFile.name);
+      files_paths.push('https://cellar.services.clever-cloud.com/docsss/'+randomname);
     }
 
     let blogPost = {
@@ -273,21 +307,25 @@ router.get('/blog/:id/delete', function(req, res, next) {
 
     let formFields = req.body;
     let sampleFile = req.files.file;
+    let randomname = randomstring.generate();
     let fileIcon;
     //console.log(typeof sampleFile);
 
-
-    fs.readdirSync("public/uploads").forEach(file => {
-      if(file == sampleFile.name){
-          sampleFile.name = (Math.floor(Math.random()*50000)+1).toString() + sampleFile.name;
-        }
-      
+    var params = {
+      Body: sampleFile.data,
+      ContentType:sampleFile.mimetype,
+      Bucket: 'docsss',
+      Key: randomname,
+      ACL: 'public-read'
+      };
+     
+      s3.putObject(params, function (err, data) {
+      if (!err) {
+        console.log("Object is public at https://cellar.services.clever-cloud.com/" +
+        params.Bucket + "/" + params.Key);
+      }else console.log(err);
     });
 
-
-    sampleFile.mv('public/uploads/'+sampleFile.name, function(err) {
-        //TODO: handle error
-    });
 
     switch(formFields.file_type){
       case "document":{
@@ -316,7 +354,7 @@ router.get('/blog/:id/delete', function(req, res, next) {
       name: formFields.name,
       description: formFields.description,
       file_type: formFields.file_type,
-      file_path: 'uploads/'+sampleFile.name,
+      file_path: 'https://cellar.services.clever-cloud.com/docsss/'+randomname,
       file_icon: fileIcon,
       grade: formFields.grade
     };

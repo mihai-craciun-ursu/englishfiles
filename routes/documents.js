@@ -3,8 +3,14 @@ var router = express.Router();
 var fs = require('fs');
 var Document = require('../models/document');
 var del = require('node-delete');
+var AWS = require('aws-sdk');
 //var User = require('../models/user');
 
+
+
+AWS.config.update({accessKeyId: 'J_CKT_TFWQPFECGCMKBG', secretAccessKey: 'AThHyIJZGGL8CeJt60GXyzje_aIhKXgtysm4AQ=='});
+var ep = new AWS.Endpoint('cellar.services.clever-cloud.com');
+var s3 = new AWS.S3({ endpoint: ep, signatureVersion: 'v2' });
 
 //GET documents
 router.get('/', function(req, res) {
@@ -82,11 +88,21 @@ router.get('/', function(req, res) {
       }else{
         var doc = documents[0];
 
-        fs.unlink('./public/uploads/' + doc.file_path.substr(8), function (err) {
-          if (err) throw err;
-          // if no error, file has been deleted successfully
-          console.log('File deleted!');
-        }); 
+        let params = {
+          Bucket: 'docsss', 
+          Delete: { // required
+            Objects: [ // required
+              {
+                Key: doc.file_path.slice(-32) // required
+              }
+            ],
+          },
+        };
+        
+        s3.deleteObjects(params, function(err, data) {
+          if (err) console.log(err, err.stack); // an error occurred
+          else     console.log(data);           // successful response
+        });
 
         Document.findByIdAndRemove(id, (err, todo) => {  
           return res.redirect('/documents');
