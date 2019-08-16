@@ -8,7 +8,7 @@ var app = express();
 
 
 //mongodb connection
-mongoose.connect("mongodb://mihai234:mihaiyin2@ds217898.mlab.com:17898/englishfiles");
+mongoose.connect("mongodb://****:******@ds217898.mlab.com:17898/englishfiles");
 //mongoose.connect("mongodb://localhost:27017/englishfiles");
 
 
