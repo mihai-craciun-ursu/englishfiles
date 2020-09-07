@@ -9,7 +9,7 @@ var User = require('../models/user');
 
 
 //configure file storage
-AWS.config.update({accessKeyId: 'J_CKT_TFWQPFECGCMKBG', secretAccessKey: 'AThHyIJZGGL8CeJt60GXyzje_aIhKXgtysm4AQ=='});
+AWS.config.update({accessKeyId: '****', secretAccessKey: '****'});
 var ep = new AWS.Endpoint('cellar.services.clever-cloud.com');
 var s3 = new AWS.S3({ endpoint: ep, signatureVersion: 'v2' });
 
